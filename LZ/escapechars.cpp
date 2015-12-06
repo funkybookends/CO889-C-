@@ -33,4 +33,5 @@ int main()
 	while (cin >> noskipws >> in){
 		cout << escapeChar(in);
 	}
+	return 0
 }
