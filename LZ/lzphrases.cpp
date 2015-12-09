@@ -42,7 +42,7 @@ int main() {
 	phrases.insert(phrase); //to prevent the firs ont being an empty line
 	string in;
 	while (getline(cin, in)){
-		in += "\n"; //so that we get the \n at the end.
+		in += "\n"; //so that we get the \n at the
 		string::const_iterator it = in.begin();
 		while (it != in.end()){
 			std::pair<std::set<string>::iterator,bool> ret;

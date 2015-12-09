@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <set>
+#include <map>
 
 using namespace std;
 
@@ -37,25 +37,33 @@ string escapeString(const string& str){
 }
 
 int main() {
-	set<string> phrases;
+	map<string, unsigned int> phrases;
 	string phrase = "";
-	phrases.insert(phrase); //to prevent the firs ont being an empty line
+	unsigned int phrase_counter = 0;
+	phrases[phrase] = phrase_counter++; //to prevent the first one being an empty line
+
+
 	string in;
 	while (getline(cin, in)){
 		in += "\n"; //so that we get the \n at the end.
 		string::const_iterator it = in.begin();
 		while (it != in.end()){
-			std::pair<std::set<string>::iterator,bool> ret;
-			ret = phrases.insert(phrase);
-			if (!ret.second){//it was not inserted
+			map<string, unsigned int>::iterator phrases_iterator;
+			if (phrases.find(phrase) != phrases.end()){//it was found
 				phrase = phrase + string(1, *it++); //grow the phrase by one char
 			}
-			else {
-				cout << escapeString(phrase) << endl; //display it
+			else { //this is a new phrase
+				phrases[phrase] = phrase_counter++;
+				string prefix = phrase.substr(0, phrase.length()-1);
+				unsigned int prefix_num = phrases[prefix];
+				cout << prefix_num << escapeString(phrase.substr(phrase.length()-1, phrase.length())) << endl; //display it
 				phrase = "";
 			}
 		}
-		cout << escapeString(phrase) << endl; //display the last one
+		string prefix = phrase.substr(0, phrase.length()-1);
+		unsigned int prefix_num = phrases[prefix];
+		cout << prefix_num << escapeString(phrase.substr(phrase.length()-1, phrase.length())) << endl; //display it
+				
 	}
 	return 0;
 }
