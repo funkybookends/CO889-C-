@@ -43,43 +43,16 @@ int main() {
 	phrases[phrase] = phrase_counter++; //to prevent the first one being an empty line
 
 	char in;
-	unsigned int prefix_id = 0;
 	while (cin >> noskipws >> in){
 		phrase += string(1, in);
 		if (phrases.find(phrase) == phrases.end()){
 			//phrase was not found
-			cout << prefix_id << escapeChar(in) << endl;
+			cout << phrases[phrase.substr(0, phrase.length()-1)] 
+			     << escapeChar(in) << endl;
 			phrases[phrase] = phrase_counter++;
-			prefix_id = 0;
 			phrase = "";
-		}
-		else {
-			//phrase was found, grab its prefix_id
-			prefix_id = phrases[phrase];
-		}
-
-		// string::const_iterator it = in.begin();
-		// while (it != in.end()){
-		// 	map<string, unsigned int>::iterator phrases_iterator;
-		// 	if (phrases.find(phrase) != phrases.end()){//it was found
-		// 		phrase = phrase + string(1, *it++); //grow the phrase by one char
-		// 	}
-		// 	else { 
-		// 		//this is a new phrase
-		// 		phrases[phrase] = phrase_counter++; //add it
-
-		// 		//do the output
-		// 		string prefix = phrase.substr(0, phrase.length()-1);
-		// 		unsigned int prefix_num = phrases[prefix];
-		// 		cout << prefix_num << escapeString(phrase.substr(phrase.length()-1, phrase.length())) << endl; //display it
-		// 		phrase = "";
-		// 	}
-		// }
-		// string prefix = phrase.substr(0, phrase.length()-1);
-		// unsigned int prefix_num = phrases[prefix];
-		// cout << prefix_num << escapeString(phrase.substr(phrase.length()-1, phrase.length())) << endl; //display it
-				
+		}				
 	}
-	cout << prefix_id << escapeChar(in);
+	cout << phrases[phrase.substr(0, phrase.length()-1)] << escapeChar(in) << endl;
 	return 0;
 }

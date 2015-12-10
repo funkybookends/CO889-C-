@@ -40,22 +40,16 @@ int main() {
 	set<string> phrases;
 	string phrase = "";
 	phrases.insert(phrase); //to prevent the firs ont being an empty line
-	string in;
-	while (getline(cin, in)){
-		in += "\n"; //so that we get the \n at the
-		string::const_iterator it = in.begin();
-		while (it != in.end()){
-			std::pair<std::set<string>::iterator,bool> ret;
-			ret = phrases.insert(phrase);
-			if (!ret.second){//it was not inserted
-				phrase = phrase + string(1, *it++); //grow the phrase by one char
-			}
-			else {
-				cout << escapeString(phrase) << endl; //display it
-				phrase = "";
-			}
+	char in;
+	while (cin >> noskipws >> in){
+		phrase += string(1, in);
+		std::pair<std::set<string>::iterator,bool> ret;
+		ret = phrases.insert(phrase);
+		if (ret.second){ //it was inserted
+			cout << escapeString(phrase) << endl;
+			phrase = "";
 		}
-		cout << escapeString(phrase) << endl; //display the last one
 	}
+	cout << escapeString(phrase) << endl;
 	return 0;
 }
