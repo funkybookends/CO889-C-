@@ -23,37 +23,37 @@ namespace {
     // encountered.
     bool unescapeChar(istream& ism, char& c)
     {
-	char ch;
-	if (!ism.get(ch))
-	    return false;
-	if (ch != '\\') {
-	    c = ch;
-	    return true;
-	}
-	// If we get this far, it's an escape sequence.
-	if (!ism.get(ch))
-	    formatError("incomplete escape sequence");
-	if (ch == '\\' || ('0' <= ch && ch <= '9')) {
-	    c = ch;
-	    return true;
-	}
-	switch (ch) {
-	case 's':
-	    c = ' ';
-	    break;
-	case 't':
-	    c = '\t';
-	    break;
-	case 'r':
-	    c = '\r';
-	    break;
-	case 'n':
-	    c = '\n';
-	    break;
-	default:
-	    formatError("unrecognised escape sequence");
-	}
-	return true;
+		char ch;
+		if (!ism.get(ch))
+		    return false;
+		if (ch != '\\') {
+		    c = ch;
+		    return true;
+		}
+		// If we get this far, it's an escape sequence.
+		if (!ism.get(ch))
+		    formatError("incomplete escape sequence");
+		if (ch == '\\' || ('0' <= ch && ch <= '9')) {
+		    c = ch;
+		    return true;
+		}
+		switch (ch) {
+		case 's':
+		    c = ' ';
+		    break;
+		case 't':
+		    c = '\t';
+		    break;
+		case 'r':
+		    c = '\r';
+		    break;
+		case 'n':
+		    c = '\n';
+		    break;
+		default:
+		    formatError("unrecognised escape sequence ("+ string(1, ch) + ")");
+		}
+		return true;
     }
 }
 
@@ -71,7 +71,7 @@ int main() {
 		    formatError("prefix number out of range");
 		string phrase = phrases[prefix_num];
 		phrase += ch;
-		cout << phrase;
+		cout << phrase;// << " -" << prefix_num << "- ";
 		phrases.push_back(phrase);
     }
     // Here we ignore some pathological types of input error:

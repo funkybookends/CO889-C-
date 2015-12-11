@@ -10,23 +10,21 @@ string escapeChar(char ch){
 	//chars are returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
-		case 9:
+		case 9: //tab
 			return string("\\t");
-			break;
-		case 10:
+		case 10: //new line
 			return string("\\n");
-			break;
-		case 32:
+		case 32: // space
 			return string("\\s");
-			break;
-		case 13:
+		case 13: // carriage return
 			return string("\\r");
-			break;
-		default:
-			if (ch>=48 && ch<=57) { //its a digit which needs escaping
+		case 92: // backslash "\"
+			return string("\\\\");
+		default: 
+			if (ch>= '0' && ch<='9') { //digits
 				return string("\\") + string(1, ch);
 			}
-			return string(1,ch);
+			return string(1,ch); //just a regular char
 	}
 }
 
@@ -46,12 +44,15 @@ int main() {
 		phrase += string(1, in);
 		std::pair<std::set<string>::iterator,bool> ret;
 		ret = phrases.insert(phrase);
-		if (ret.second){ //it was inserted
+		if (ret.second){
+			//it was inserted, so should be displayed.
 			cout << escapeString(phrase) << endl;
 			phrase = ""; //reset the phrase
 		}
 	}
 	if (phrase != ""){
+	    //if the last phrase was in the set
+	    //it still needs to be displayed
 		cout << escapeString(phrase) << endl;
 	}
 	if (!cin.eof()){

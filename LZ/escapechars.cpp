@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 
 using namespace std;
 
@@ -10,23 +9,21 @@ string escapeChar(char ch){
 	//chars are returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
-		case 9:
+		case 9: //tab
 			return string("\\t");
-			break;
-		case 10:
+		case 10: //new line
 			return string("\\n");
-			break;
-		case 32:
+		case 32: // space
 			return string("\\s");
-			break;
-		case 13:
+		case 13: // carriage return
 			return string("\\r");
-			break;
-		default:
-			if (ch>=48 && ch<=57) { //its a digit which needs escaping
+		case 92: // backslash "\"
+			return string("\\\\");
+		default: 
+			if (ch>= '0' && ch<='9') { //digits
 				return string("\\") + string(1, ch);
 			}
-			return string(1,ch);
+			return string(1,ch); //just a regular char
 	}
 }
 
