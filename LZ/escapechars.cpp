@@ -27,7 +27,7 @@ string escapeChar(char ch){
 			if (ch>=48 && ch<=57) {
 				return string("\\") + string(1, ch);
 			}
-			return string(1,ch);			
+			return string(1,ch);
 	}
 }
 

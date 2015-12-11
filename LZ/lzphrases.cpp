@@ -24,14 +24,14 @@ string escapeChar(char ch){
 			if (ch>=48 && ch<=57) {
 				return string("\\") + string(1, ch);
 			}
-			return string(1,ch);			
+			return string(1,ch);
 	}
 }
 
 string escapeString(const string& str){
 	string out;
 	for (string::const_iterator it = str.begin(); it!=str.end(); ++it){
-		out += escapeChar(*it);
+		out += escapeChar(*it); 
 	}
 	return out;
 }
@@ -39,7 +39,7 @@ string escapeString(const string& str){
 int main() {
 	set<string> phrases;
 	string phrase = "";
-	phrases.insert(phrase); //to prevent the firs ont being an empty line
+	//phrases.insert(phrase); //to prevent the first one being an empty line
 	char in;
 	while (cin >> noskipws >> in){
 		phrase += string(1, in);

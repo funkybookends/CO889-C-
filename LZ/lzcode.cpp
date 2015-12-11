@@ -5,7 +5,9 @@
 using namespace std;
 
 string escapeChar(char ch){
-	//takes in a charecter and returns a string. In most cases the returned string is simply the one character string containing ch, However escpaed chars are returned as the representation of them i.e. char('\t') returns string("\t").
+	//takes in a charecter and returns a string. In most cases the returned string
+	// is simply the one character string containing ch, However escpaed chars are
+	//returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
 		case 9:
@@ -24,7 +26,7 @@ string escapeChar(char ch){
 			if (ch>=48 && ch<=57) {
 				return string("\\") + string(1, ch);
 			}
-			return string(1,ch);			
+			return string(1,ch);
 	}
 }
 
@@ -38,21 +40,29 @@ string escapeString(const string& str){
 
 int main() {
 	map<string, unsigned int> phrases;
+
+	//initialize the 0 phrase
 	string phrase = "";
 	unsigned int phrase_counter = 0;
-	phrases[phrase] = phrase_counter++; //to prevent the first one being an empty line
+	phrases[phrase] = phrase_counter++; 
 
 	char in;
 	while (cin >> noskipws >> in){
-		phrase += string(1, in);
+
+		phrase += string(1, in); //append the char to the current phrase
+
 		if (phrases.find(phrase) == phrases.end()){
 			//phrase was not found
+			//so its a new phrase
 			cout << phrases[phrase.substr(0, phrase.length()-1)] 
 			     << escapeChar(in) << endl;
 			phrases[phrase] = phrase_counter++;
-			phrase = "";
-		}				
+			phrase = ""; //reset the phrase
+		} //else lets go through the loop again
 	}
-	cout << phrases[phrase.substr(0, phrase.length()-1)] << escapeChar(in) << endl;
+	if (cin.eof() && phrase!=""){
+		cout << phrases[phrase.substr(0, phrase.length()-1)] 
+		     << escapeChar(in) << endl;
+	}
 	return 0;
 }
