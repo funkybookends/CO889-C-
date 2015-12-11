@@ -53,8 +53,8 @@ int main() {
 			//phrase was not found
 			//so its a new phrase
 			cout << phrases[phrase.substr(0, phrase.length()-1)]
-				 << escapeChar(in) << endl;
-			phrases[phrase] = phrase_counter++;
+				 << escapeChar(in) << endl; //display it
+			phrases[phrase] = phrase_counter++; //record it
 			phrase = ""; //reset the phrase
 		} //else lets go through the loop again
 	}
