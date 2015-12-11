@@ -5,7 +5,9 @@
 using namespace std;
 
 string escapeChar(char ch){
-	//takes in a charecter and returns a string. In most cases the returned string is simply the one character string containing ch, However escpaed chars are returned as the representation of them i.e. char('\t') returns string("\t").
+	//takes in a charecter and returns a string. In most cases the returned 
+	//string is simply the one character string containing ch, However escpaed 
+	//chars are returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
 		case 9:
@@ -21,7 +23,7 @@ string escapeChar(char ch){
 			return string("\\r");
 			break;
 		default:
-			if (ch>=48 && ch<=57) {
+			if (ch>=48 && ch<=57) { //its a digit which needs escaping
 				return string("\\") + string(1, ch);
 			}
 			return string(1,ch);
@@ -39,7 +41,6 @@ string escapeString(const string& str){
 int main() {
 	set<string> phrases;
 	string phrase = "";
-	//phrases.insert(phrase); //to prevent the first one being an empty line
 	char in;
 	while (cin >> noskipws >> in){
 		phrase += string(1, in);
@@ -47,9 +48,15 @@ int main() {
 		ret = phrases.insert(phrase);
 		if (ret.second){ //it was inserted
 			cout << escapeString(phrase) << endl;
-			phrase = "";
+			phrase = ""; //reset the phrase
 		}
 	}
-	cout << escapeString(phrase) << endl;
+	if (phrase != ""){
+		cout << escapeString(phrase) << endl;
+	}
+	if (!cin.eof()){
+		//there was an error reading in
+		return 1;
+	}
 	return 0;
 }

@@ -1,14 +1,13 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
 string escapeChar(char ch){
-	//takes in a charecter and returns a string. 
-	//In most cases the returned string is simply the one 
-	//character string containing ch, However escpaed chars 
-	//are returned as the representation of them i.e. 
-	//char('\t') returns string("\t").
+	//takes in a charecter and returns a string. In most cases the returned 
+	//string is simply the one character string containing ch, However escpaed 
+	//chars are returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
 		case 9:
@@ -24,7 +23,7 @@ string escapeChar(char ch){
 			return string("\\r");
 			break;
 		default:
-			if (ch>=48 && ch<=57) {
+			if (ch>=48 && ch<=57) { //its a digit which needs escaping
 				return string("\\") + string(1, ch);
 			}
 			return string(1,ch);
@@ -36,6 +35,10 @@ int main()
 	char in;
 	while (cin >> noskipws >> in){
 		cout << escapeChar(in);
+	}
+	if (!cin.eof()){
+		//there was an error reading in
+		return 1;
 	}
 	return 0;
 }

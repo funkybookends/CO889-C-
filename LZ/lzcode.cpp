@@ -5,9 +5,9 @@
 using namespace std;
 
 string escapeChar(char ch){
-	//takes in a charecter and returns a string. In most cases the returned string
-	// is simply the one character string containing ch, However escpaed chars are
-	//returned as the representation of them i.e. char('\t') returns string("\t").
+	//takes in a charecter and returns a string. In most cases the returned 
+	//string is simply the one character string containing ch, However escpaed 
+	//chars are returned as the representation of them i.e. char('\t') returns string("\t").
 
 	switch (ch){
 		case 9:
@@ -23,7 +23,7 @@ string escapeChar(char ch){
 			return string("\\r");
 			break;
 		default:
-			if (ch>=48 && ch<=57) {
+			if (ch>=48 && ch<=57) { //its a digit which needs escaping
 				return string("\\") + string(1, ch);
 			}
 			return string(1,ch);
@@ -44,7 +44,7 @@ int main() {
 	//initialize the 0 phrase
 	string phrase = "";
 	unsigned int phrase_counter = 0;
-	phrases[phrase] = phrase_counter++; 
+	phrases[phrase] = phrase_counter++;
 
 	char in;
 	while (cin >> noskipws >> in){
@@ -54,15 +54,19 @@ int main() {
 		if (phrases.find(phrase) == phrases.end()){
 			//phrase was not found
 			//so its a new phrase
-			cout << phrases[phrase.substr(0, phrase.length()-1)] 
-			     << escapeChar(in) << endl;
+			cout << phrases[phrase.substr(0, phrase.length()-1)]
+				 << escapeChar(in) << endl;
 			phrases[phrase] = phrase_counter++;
 			phrase = ""; //reset the phrase
 		} //else lets go through the loop again
 	}
-	if (cin.eof() && phrase!=""){
+	if (phrase!=""){
 		cout << phrases[phrase.substr(0, phrase.length()-1)] 
-		     << escapeChar(in) << endl;
+			 << escapeChar(in) << endl;
+	}
+	if (!cin.eof()){
+		//there was an error reading in
+		return 1;
 	}
 	return 0;
 }
