@@ -117,24 +117,24 @@ public:
     template <typename P, typename R>
     _RBIterator& operator=(const _RBIterator<T, P, R>& pattern)
     {
-	// *** Your code goes here (6 marks)
+	// *** Your code goes here (6 marks)6
     }
 
     Reference operator*() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)8
     }
 
     Pointer operator->() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)10
     }
 
     // *** In the following method, you may assume that rhs relates to
     // *** the same RingBuffer as *this.
     bool operator==(const _RBIterator& rhs) const
     {
-	return false;  // *** Replace this with your code (2 marks)
+	return false;  // *** Replace this with your code (2 marks)12
     }
 
     bool operator!=(const _RBIterator& rhs) const
@@ -144,32 +144,32 @@ public:
 
     _RBIterator& operator++()
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)16
     }
 
     _RBIterator operator++(int)
     {
-	// *** Your code goes here (6 marks)
+	// *** Your code goes here (6 marks)22
     }
 
     _RBIterator& operator--()
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)26
     }
 
     _RBIterator operator--(int)
     {
-	// *** Your code goes here (6 marks)
+	// *** Your code goes here (6 marks)32
     }
 
     _RBIterator& operator+=(difference_type n)
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)36
     }
 
     _RBIterator operator+(difference_type n)
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)40
     }
 
     // It would be logical to define operator-= and operator-
@@ -181,12 +181,12 @@ public:
     difference_type
     operator-(const _RBIterator& rhs) const
     {
-	return 0;  // *** Replace this with your code (14 marks)
+	return 0;  // *** Replace this with your code (14 marks)54
     }
 
     Reference operator[](difference_type n)
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)56
     }
 private:
     // Pointer to the RingBuffer to which this iterator relates:
@@ -207,7 +207,7 @@ inline bool
 operator<(const _RBIterator<T, Pointer, Reference>& l,
 	  const _RBIterator<T, Pointer, Reference>& r)
 {
-    return false;  // *** Replace this with your code (2 marks)
+    return false;  // *** Replace this with your code (2 marks)58
 }
 
 /** @brief Ring Buffer.
@@ -245,12 +245,12 @@ public:
     RingBuffer(const RingBuffer& pattern)
 	: RingBuffer(pattern.capacity())
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)62
     }
 
     ~RingBuffer()
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)64
     }
 
     // The following declaration prevents the compiler from generating
@@ -260,17 +260,17 @@ public:
 
     iterator begin()
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)66
     }
 
     const_iterator begin() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)68
     }
 
     const_iterator cbegin() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)70
     }
 
     /** @brief Capacity of the RingBuffer.
@@ -279,7 +279,7 @@ public:
      */
     size_type capacity() const
     {
-	return 0;  // *** Replace this with your code (2 marks)
+	return 0;  // *** Replace this with your code (2 marks)72
     }
 
     /** @brief Remove all data from this RingBuffer.
@@ -288,7 +288,7 @@ public:
      */
     void clear()
     {
-	// *** Your code goes here (4 marks)
+	// *** Your code goes here (4 marks)76
     }
 
     /** @brief Test whether RingBuffer is empty.
@@ -298,22 +298,22 @@ public:
      */
     bool empty() const
     {
-	return false;  // *** Replace this with your code (2 marks)
+	return false;  // *** Replace this with your code (2 marks)78
     }
 
     iterator end()
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)80
     }
 
     const_iterator end() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)82
     }
 
     const_iterator cend() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)84
     }
 
     /** @brief Element at the front of the queue.
@@ -324,12 +324,12 @@ public:
      */
     T& front()
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)86
     }
 
     const T& front() const
     {
-	// *** Your code goes here (2 marks)
+	// *** Your code goes here (2 marks)88
     }
 
     /** @brief Remove the element at the front of the queue.
@@ -339,7 +339,7 @@ public:
      */
     void pop_front()
     {
-	// *** Your code goes here (10 marks)
+	// *** Your code goes here (10 marks)98
     }
 
     /** @brief Add element at the end of the queue.
@@ -351,12 +351,12 @@ public:
      */
     void push_back(const T& elem)
     {
-	// *** Your code goes here (12 marks)
+	// *** Your code goes here (12 marks)110
     }
 
     size_type size() const
     {
-	return 0;  // *** Replace this with your code (2 marks)
+	return 0;  // *** Replace this with your code (2 marks)112
     }
 private:
     // This is a special syntax (not examinable) for declaring a
@@ -402,7 +402,7 @@ private:
     template <typename Ptr>
     Ptr stepForward(Ptr ptr, std::ptrdiff_t steps) const
     {
-	// *** Your code goes here (18 marks)
+	// *** Your code goes here (18 marks)130
     }
 };
 
@@ -422,7 +422,7 @@ template <typename T>
 bool operator==(const RingBuffer<T>& l,
 		const RingBuffer<T>& r)
 {
-    return false;  // *** Replace this with your code (22 marks)
+    return false;  // *** Replace this with your code (22 marks)152
 }
 
 template <typename T>
