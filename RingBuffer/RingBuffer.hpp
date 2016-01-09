@@ -370,6 +370,9 @@ public:
     void pop_front()
     {
 	// *** Your code goes here (10 marks)98
+        if (!empty()) {
+            m_begin = stepForward(m_begin, 1);
+        }
     }
 
     /** @brief Add element at the end of the queue.
