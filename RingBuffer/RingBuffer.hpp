@@ -355,6 +355,7 @@ public:
     T& front()
     {
 	// *** Your code goes here (2 marks)86
+        return *m_begin;
     }
 
     const T& front() const
