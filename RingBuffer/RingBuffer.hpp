@@ -316,7 +316,7 @@ public:
 	// *** Your code goes here (4 marks)76
         //while not empty, pop
         while (!empty()) {
-            this.pop_front();
+            pop_front();
         }
     }
 
