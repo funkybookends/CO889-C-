@@ -303,7 +303,8 @@ public:
      */
     size_type capacity() const
     {
-	return 0;  // *** Replace this with your code (2 marks)72
+	//return 0;  // *** Replace this with your code (2 marks)72
+        return m_limit - m_base - 1;
     }
 
     /** @brief Remove all data from this RingBuffer.
