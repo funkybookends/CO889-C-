@@ -361,6 +361,7 @@ public:
     const T& front() const
     {
 	// *** Your code goes here (2 marks)88
+        return *m_begin;
     }
 
     /** @brief Remove the element at the front of the queue.
