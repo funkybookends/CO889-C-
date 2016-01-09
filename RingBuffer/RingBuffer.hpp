@@ -436,6 +436,25 @@ private:
     Ptr stepForward(Ptr ptr, std::ptrdiff_t steps) const
     {
 	// *** Your code goes here (18 marks)130
+        //check the end condition
+        if (steps == 0) { return ptr; }
+
+        //do the stepping
+        else if (steps > 0) {
+            ptr++;
+            steps --;
+        }
+        else {
+            ptr--;
+            steps ++;
+        }
+
+        //fix wrap arounds
+        if (ptr == m_limit) {ptr = m_base;}
+        else if (ptr == m_base-1) {ptr = m_limit;}
+
+        //return the next step
+        return stepForward(ptr, steps)
     }
 };
 
