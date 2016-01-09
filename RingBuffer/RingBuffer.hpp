@@ -327,7 +327,8 @@ public:
      */
     bool empty() const
     {
-	return false;  // *** Replace this with your code (2 marks)78
+	//return false;  // *** Replace this with your code (2 marks)78
+        return m_begin == m_end;
     }
 
     iterator end()
