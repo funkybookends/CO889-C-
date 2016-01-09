@@ -389,7 +389,13 @@ public:
 
     size_type size() const
     {
-	return 0;  // *** Replace this with your code (2 marks)112
+	//return 0;  // *** Replace this with your code (2 marks)112
+        if (m_begin <= m_end) {
+            return m_end - m_begin;
+        }
+        else {
+            return m_begin - m_end;
+        }
     }
 private:
     // This is a special syntax (not examinable) for declaring a
