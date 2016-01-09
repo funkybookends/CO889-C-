@@ -30,7 +30,7 @@ string escapeChar(char ch){
 int main()
 {
 	char in;
-	while (cin >> noskipws >> in){
+	while (cin.get(in)){
 		cout << escapeChar(in);
 	}
 	if (!cin.eof()){

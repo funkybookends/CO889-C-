@@ -40,7 +40,7 @@ int main() {
 	set<string> phrases;
 	string phrase = "";
 	char in;
-	while (cin >> noskipws >> in){
+	while (cin.get(in)){
 		phrase += string(1, in);
 		std::pair<std::set<string>::iterator,bool> ret;
 		ret = phrases.insert(phrase);

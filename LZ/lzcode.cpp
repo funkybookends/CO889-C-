@@ -45,7 +45,7 @@ int main() {
 	phrases[phrase] = phrase_counter++;
 
 	char in;
-	while (cin >> noskipws >> in){
+	while (cin.get(in)){
 
 		phrase += string(1, in); //append the char to the current phrase
 
