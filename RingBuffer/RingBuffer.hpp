@@ -314,6 +314,10 @@ public:
     void clear()
     {
 	// *** Your code goes here (4 marks)76
+        //while not empty, pop
+        while (!empty()) {
+            this.pop_front();
+        }
     }
 
     /** @brief Test whether RingBuffer is empty.
