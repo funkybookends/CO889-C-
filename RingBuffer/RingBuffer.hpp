@@ -167,7 +167,7 @@ public:
     _RBIterator& operator--()
     {
 	// *** Your code goes here (4 marks)26
-
+        stepForward(m_ptr, -1);
     }
 
     _RBIterator operator--(int)
