@@ -217,7 +217,7 @@ public:
     {
 	// *** Your code goes here (2 marks)56
         //gets an iterator at the beginning, and steps it forward n times;
-        return *(stepForward(m_rb.begin(), n);
+        return *(stepForward(m_rb.begin(), n));
     }
 private:
     // Pointer to the RingBuffer to which this iterator relates:
