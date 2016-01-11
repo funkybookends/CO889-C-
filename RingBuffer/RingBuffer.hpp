@@ -28,7 +28,6 @@
 
 #include <cstddef>
 #include <iterator>
-#include <iostream>
 #include <memory>
 
 // This class template needs to be predeclared because the definition
@@ -146,12 +145,6 @@ public:
     bool operator==(const _RBIterator& rhs) const
     {
 	//return false;  // *** Replace this with your code (2 marks)12
-        std::cout<<"Comparing\n";
-        // std::cout<<"lhs.m_rb = " << m_rb << "\n";
-        // std::cout<<"rhs.m_rb = " << rhs.m_rb << "\n";
-
-        std::cout<<"lhs.m_ptr = " << m_ptr << "\n";
-        std::cout<<"rhs.m_ptr = " << rhs.m_ptr << "\n";
         return (rhs.m_rb == m_rb) && (rhs.m_ptr == m_ptr);
     }
 
@@ -163,9 +156,7 @@ public:
     _RBIterator& operator++()
     {
 	// *** Your code goes here (4 marks)16
-        std::cout<<"stepping iterator from "<< m_ptr;
-        m_ptr = m_rb->stepForward(m_ptr,1);
-        std::cout<<" to "<< m_ptr<<"\n";
+        m_rb->stepForward(m_ptr,1);
         return *this;
     }
 
@@ -173,14 +164,14 @@ public:
     {
 	// *** Your code goes here (6 marks)22
         Pointer temp = m_ptr;
-        m_ptr = m_rb->stepForward(m_ptr,1);
+        m_rb->stepForward(m_ptr,1);
         return *temp;
     }
 
     _RBIterator& operator--()
     {
 	// *** Your code goes here (4 marks)26
-        m_ptr = m_rb->stepForward(m_ptr, -1);
+        m_rb->stepForward(m_ptr, -1);
         return *this;
     }
 
@@ -188,21 +179,21 @@ public:
     {
 	// *** Your code goes here (6 marks)32
         Pointer temp = m_ptr;
-        m_ptr = m_rb->stepForward(m_ptr,-1);
+        m_rb->stepForward(m_ptr,-1);
         return *temp;
     }
 
     _RBIterator& operator+=(difference_type n)
     {
 	// *** Your code goes here (4 marks)36
-        m_ptr = m_rb->stepForward(m_ptr, n);
+        m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
     _RBIterator operator+(difference_type n)
     {
 	// *** Your code goes here (4 marks)40
-        m_ptr = m_rb->stepForward(m_ptr, n);
+        m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
@@ -318,23 +309,19 @@ public:
     iterator begin()
     {
 	// *** Your code goes here (2 marks)66
-        std::cout << "request for m_begin iterator (" <<m_begin<< ")\n";
-        std::cout << "m_end - m_begin = " << m_begin-m_end<<"\n";
         return iterator(this,m_begin);
     }
 
     const_iterator begin() const
     {
 	// *** Your code goes here (2 marks)68
-        std::cout << "m_begin is 2. " <<m_begin<< " ";
         return iterator(this,m_begin);
     }
 
     const_iterator cbegin() const
     {
 	// *** Your code goes here (2 marks)70
-        std::cout << "m_begin is 3. " <<m_begin<< " ";
-        return iterator(this,m_begin);
+        return iterator(*this,m_begin);
     }
 
     /** @brief Capacity of the RingBuffer.
@@ -374,21 +361,18 @@ public:
     iterator end()
     {
 	// *** Your code goes here (2 marks)80
-        std::cout<<"request for m_end   iterator ("<<m_end<< ")\n";
-        return iterator(this, m_end); 
+        return iterator(this, m_end);
     }
 
     const_iterator end() const
     {
 	// *** Your code goes here (2 marks)82
-        std::cout<<"m_end is 2."<<m_end<< " ";
         return iterator(this, m_end);
     }
 
     const_iterator cend() const
     {
 	// *** Your code goes here (2 marks)84
-        std::cout<<"m_end is 3."<<m_end<< " ";
         return iterator(this, m_end);
     }
 
@@ -431,21 +415,14 @@ public:
      *             and an exception of type std::length_error is thrown.
      */
     void push_back(const T& elem)
-    { 
+    {
 	// *** Your code goes here (12 marks)110
-        //puts the element at the end if there is space
+        //puts the elemet at the end if there is space
         //and then steps m_end forward
-        std::cout << "push backd m_begin is       (" << m_begin << ")\n";
-        std::cout << "push backd m_end   is       (" << m_end << ")\n";
         if (size()<capacity()){
             *m_end = elem;
-            std::cout << "added element m_begin is    (" << m_begin << ")\n";
-            std::cout << "added element m_end   is    (" << m_end << ")\n";
-            std::cout << "reassigning m_end\n";
-            m_end = stepForward(m_end, 1);
+            stepForward(m_end, 1);
         }
-        std::cout << "now           m_begin is    (" << m_begin << ")\n";
-        std::cout << "and           m_end   is    (" << m_end << ")\n";
     }
 
     size_type size() const
@@ -503,23 +480,19 @@ private:
     Ptr stepForward(Ptr ptr, std::ptrdiff_t steps) const
     {
 	// *** Your code goes here (18 marks)130
-        std::cout<<"stepping ";
         //check the end condition
         if (steps == 0){
-            std::cout<<" returning \n";
             return ptr;
         }
 
         //take a step
         else if (steps > 0) {
-            std::cout<<"forwards ";
             ptr++;
-            steps--;
+            steps --;
         }
         else {
-            std::cout<<"backwards ";
             ptr--;
-            steps++;
+            steps ++;
         }
 
         //fix wrap arounds
@@ -550,8 +523,8 @@ bool operator==(const RingBuffer<T>& l,
     //return false;  // *** Replace this with your code (22 marks)152
     //gets two const iterators and iterates through them checking that
     // all the elements are the same
-    const _RBIterator<T,T*,T&> L = l.cbegin();
-    const _RBIterator<T,T*,T&> R = r.cbegin();
+    auto L = l.cbegin();
+    auto R = r.cbegin();
 
     while (L!=l.cend()){
         if (*L != *R) { //they must have the same content
