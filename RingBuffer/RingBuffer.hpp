@@ -193,6 +193,8 @@ public:
     _RBIterator operator+(difference_type n)
     {
 	// *** Your code goes here (4 marks)40
+        stepForward(m_ptr, n);
+        return *this;
     }
 
     // It would be logical to define operator-= and operator-
@@ -210,6 +212,8 @@ public:
     Reference operator[](difference_type n)
     {
 	// *** Your code goes here (2 marks)56
+        //gets an iterator at the beginning, and steps it forward n times;
+        return *(stepForward(m_rb.begin(), n);
     }
 private:
     // Pointer to the RingBuffer to which this iterator relates:
@@ -231,6 +235,7 @@ operator<(const _RBIterator<T, Pointer, Reference>& l,
 	  const _RBIterator<T, Pointer, Reference>& r)
 {
     return false;  // *** Replace this with your code (2 marks)58
+    //checks if  the iterator is before the other
 }
 
 /** @brief Ring Buffer.
