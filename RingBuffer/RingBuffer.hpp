@@ -131,11 +131,13 @@ public:
     Reference operator*() const
     {
 	// *** Your code goes here (2 marks)8
+        return *m_ptr;
     }
 
     Pointer operator->() const
     {
 	// *** Your code goes here (2 marks)10
+        return &m_ptr;
     }
 
     // *** In the following method, you may assume that rhs relates to
