@@ -534,9 +534,29 @@ template <typename T>
 bool operator==(const RingBuffer<T>& l,
 		const RingBuffer<T>& r)
 {
-    return false;  // *** Replace this with your code (22 marks)152
+    //return false;  // *** Replace this with your code (22 marks)152
     //gets two const iterators and iterates through them checking that
     // all the elements are the same
+    auto L = l.cbegin();
+    auto R = r.cbegin();
+
+    while (L!=l.cend()){
+        if (*L != *R) { //they must have the same content
+            return false;
+        }
+        if (R == r.cend()){ //we're here because L is not cend, so R can't be
+            return false;
+        }
+        ++L; //increment
+        ++R;
+    }
+    //they had they same content
+    if (R == r.cend() { // so if R is at the end as well, then we're good
+        return true;
+    }
+    else { // R is not at the end, so not the same.
+        return false;
+    }
 }
 
 template <typename T>
