@@ -323,19 +323,19 @@ public:
     iterator begin()
     {
 	// *** Your code goes here (2 marks)66
-        return _RBIterator(*this,m_begin);
+        return _RBIterator<T, T*, T&>(*this,m_begin);
     }
 
     const_iterator begin() const
     {
 	// *** Your code goes here (2 marks)68
-        return _RBIterator(*this,m_begin);
+        return _RBIterator<T, T*, T&>(*this,m_begin);
     }
 
     const_iterator cbegin() const
     {
 	// *** Your code goes here (2 marks)70
-        return _RBIterator(*this,m_begin);
+        return _RBIterator<T, T*, T&>(*this,m_begin);
     }
 
     /** @brief Capacity of the RingBuffer.
