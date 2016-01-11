@@ -2,7 +2,7 @@
 
 #objects variable
 #list all the src file objects
-OBJECTS = simplechecks.o
+OBJECTS = simplecheck.o
 
 # #prefix flags
 CXXFLAGS += -g -std=c++11 -Wall
