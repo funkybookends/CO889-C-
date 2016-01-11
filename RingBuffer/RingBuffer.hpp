@@ -342,16 +342,19 @@ public:
     iterator end()
     {
 	// *** Your code goes here (2 marks)80
+        return _RBIterator(*this, m_end);
     }
 
     const_iterator end() const
     {
 	// *** Your code goes here (2 marks)82
+        return _RBIterator(*this, m_end);
     }
 
     const_iterator cend() const
     {
 	// *** Your code goes here (2 marks)84
+        return _RBIterator(*this, m_end);
     }
 
     /** @brief Element at the front of the queue.
