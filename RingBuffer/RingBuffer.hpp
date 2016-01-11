@@ -142,7 +142,8 @@ public:
     // *** the same RingBuffer as *this.
     bool operator==(const _RBIterator& rhs) const
     {
-	return false;  // *** Replace this with your code (2 marks)12
+	//return false;  // *** Replace this with your code (2 marks)12
+        return (rhs.m_rb == m_rb) && (rhs.m_ptr == m_ptr);
     }
 
     bool operator!=(const _RBIterator& rhs) const
