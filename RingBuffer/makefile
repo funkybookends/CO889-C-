@@ -2,21 +2,21 @@
 
 #objects variable
 #list all the src file objects
-OBJECTS = simplecheck.o
+# OBJECTS = simplecheck.o simplecheck.cpp RingBuffer.hpp
 
-# #prefix flags
-CXXFLAGS += -g -std=c++11 -Wall
+# # #prefix flags
+# CXXFLAGS += -g -std=c++11 -Wall
 
-# Prefix a line with @ to stop it from being echo'd
+# # Prefix a line with @ to stop it from being echo'd
 
-# ##code to generate dependancies from .d files
-# #you can just copy this, it determines the dependancies for you
-%.d : %.cpp
-	set -e; $(CXX) -M $(CPPFLAGS) $< \
-	| sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@; \
-		[ -s $@ ] || rm -f $@
+# # ##code to generate dependancies from .d files
+# # #you can just copy this, it determines the dependancies for you
+# %.d : %.cpp
+# 	set -e; $(CXX) -M $(CPPFLAGS) $< \
+# 	| sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@; \
+# 		[ -s $@ ] || rm -f $@
 
-test : simplecheck.ok
+test : simplecheck.ok simplecheck RingBuffer.hpp simplecheck.cpp
 ####
 #single test
 ###
@@ -29,7 +29,7 @@ test : simplecheck.ok
 # 	@touch escapechars.ok
 # 	@echo "escapechars passed"
 
-simplecheck.ok : simplecheck
+simplecheck.ok : simplecheck simplecheck.cpp RingBuffer.hpp
 	@echo "testing"
 	@./simplecheck > simplecheck.out
 	@diff simplecheck.good simplecheck.out
@@ -41,8 +41,10 @@ simplecheck.ok : simplecheck
 
 #we can also define how a test should fail. see the slides
 
-simplecheck : $(OBJECTS)
-	$(LINK.cpp) -o $@ $(OBJECTS)
+simplecheck : simplecheck.cpp RingBuffer.hpp
+	g++ -g -std=c++11 -Wall -o simplecheck simplecheck.cpp
+# simplecheck : $(OBJECTS)
+# 	$(LINK.cpp) -o $@ $(OBJECTS)
 
 
 # simplecheck : simplecheck.cpp
