@@ -163,6 +163,9 @@ public:
     _RBIterator operator++(int)
     {
 	// *** Your code goes here (6 marks)22
+        Pointer temp = m_ptr;
+        stepForward(m_ptr,1);
+        return *temp;
     }
 
     _RBIterator& operator--()
@@ -175,6 +178,9 @@ public:
     _RBIterator operator--(int)
     {
 	// *** Your code goes here (6 marks)32
+        Pointer temp = m_ptr;
+        stepForward(m_ptr,-1);
+        return *temp;
     }
 
     _RBIterator& operator+=(difference_type n)
