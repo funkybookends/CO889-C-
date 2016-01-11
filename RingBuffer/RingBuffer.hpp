@@ -288,23 +288,8 @@ public:
 	: RingBuffer(pattern.capacity())
     {
 	// *** Your code goes here (4 marks)62
-        int cap = pattern.capacity;
-        m_buffer = new T[cap + 1]; //make a new array of the 
-                                                //right size
-        m_base = m_buffer.get(); //find its base value
-        m_limit = m_base + pattern.capacity() + 1; //and set the limit
-        m_begin = (pattern.m_begin - pattern.m_base) + m_base;
-        m_end = (pattern.m_begin - pattern.m_end) + m_base;
-
-        //we could be smart and only copy in the things between begin and end
-        //but it's way simpler to just copy all of it, then we don't have to
-        //worry about looping round correctly.
-
-        //although perhaps we could just get a const iterator and start 
-        //filling ourselves in with the pattern from begin to end?
+        //copies contents of pattern into base
         std::copy(pattern.m_base, pattern.m_limit, m_begin);
-
-
     }
 
     ~RingBuffer()
