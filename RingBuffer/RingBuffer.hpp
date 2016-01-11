@@ -288,10 +288,10 @@ public:
 	: RingBuffer(pattern.capacity())
     {
 	// *** Your code goes here (4 marks)62
-        m_buffer = new T[pattern.capacity + 1]; //make a new array of the 
+        m_buffer = new T[pattern.capacity() + 1]; //make a new array of the 
                                                 //right size
         m_base = m_buffer.get(); //find its base value
-        m_limit = m_base + pattern.capacity + 1; //and set the limit
+        m_limit = m_base + pattern.capacity() + 1; //and set the limit
         m_begin = (pattern.m_begin - pattern.m_base) + m_base;
         m_end = (pattern.m_begin - pattern.m_end) + m_base;
 
@@ -435,7 +435,7 @@ public:
         //and then steps m_end forward
         if (size()<capacity()){
             *m_end = elem;
-            stepForward(m_end);
+            stepForward(m_end, 1);
         }
     }
 
