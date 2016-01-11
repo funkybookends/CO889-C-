@@ -206,7 +206,11 @@ public:
     difference_type
     operator-(const _RBIterator& rhs) const
     {
-	return 0;  // *** Replace this with your code (14 marks)54
+	//return 0;  // *** Replace this with your code (14 marks)54
+        //this should calculate the difference between the two iterators
+        difference_type diff = 0;
+        _RBIterator start = *this;
+        while (*this!=)
     }
 
     Reference operator[](difference_type n)
@@ -236,6 +240,16 @@ operator<(const _RBIterator<T, Pointer, Reference>& l,
 {
     return false;  // *** Replace this with your code (2 marks)58
     //checks if  the iterator is before the other
+    if (l==r) { return false;}
+
+    auto L = l; //copy of L that is not const
+    while (L!=l.m_rb.end()){
+        if (++L==r) { //increment and check if equal
+            return true;
+        }
+    }
+    //if l could not be incremented up to r, it must be bigger.
+    return false;
 }
 
 /** @brief Ring Buffer.
