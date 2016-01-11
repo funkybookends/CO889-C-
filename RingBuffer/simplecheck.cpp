@@ -17,6 +17,7 @@
  *  http://www.r-project.org/Licenses/
  */
 
+#include <iostream>
 #include "RingBuffer.hpp"
 
 using namespace std;
