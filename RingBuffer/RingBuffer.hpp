@@ -309,7 +309,7 @@ public:
     ~RingBuffer()
     {
 	// *** Your code goes here (2 marks)64
-        delete m_buffer;
+        m_buffer = nullptr;
         //do I need to delete the other things as well? they're not on the 
         //free store
 
@@ -551,7 +551,7 @@ bool operator==(const RingBuffer<T>& l,
         ++R;
     }
     //they had they same content
-    if (R == r.cend() { // so if R is at the end as well, then we're good
+    if (R == r.cend()) { // so if R is at the end as well, then we're good
         return true;
     }
     else { // R is not at the end, so not the same.
