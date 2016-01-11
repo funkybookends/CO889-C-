@@ -206,11 +206,11 @@ public:
     difference_type
     operator-(const _RBIterator& rhs) const
     {
-	//return 0;  // *** Replace this with your code (14 marks)54
+	return 0;  // *** Replace this with your code (14 marks)54
         //this should calculate the difference between the two iterators
-        difference_type diff = 0;
-        _RBIterator start = *this;
-        while (*this!=)
+        // difference_type diff = 0;
+        // _RBIterator start = *this;
+        // while (*this!=)
     }
 
     Reference operator[](difference_type n)
