@@ -156,7 +156,7 @@ public:
     _RBIterator& operator++()
     {
 	// *** Your code goes here (4 marks)16
-        m_rb->stepForward(m_ptr,1);
+        m_ptr = m_rb->stepForward(m_ptr,1);
         return *this;
     }
 
@@ -164,14 +164,14 @@ public:
     {
 	// *** Your code goes here (6 marks)22
         Pointer temp = m_ptr;
-        m_rb->stepForward(m_ptr,1);
+        m_ptr = m_rb->stepForward(m_ptr,1);
         return *temp;
     }
 
     _RBIterator& operator--()
     {
 	// *** Your code goes here (4 marks)26
-        m_rb->stepForward(m_ptr, -1);
+        m_ptr = m_rb->stepForward(m_ptr, -1);
         return *this;
     }
 
@@ -179,21 +179,21 @@ public:
     {
 	// *** Your code goes here (6 marks)32
         Pointer temp = m_ptr;
-        m_rb->stepForward(m_ptr,-1);
+        m_ptr = m_rb->stepForward(m_ptr,-1);
         return *temp;
     }
 
     _RBIterator& operator+=(difference_type n)
     {
 	// *** Your code goes here (4 marks)36
-        m_rb->stepForward(m_ptr, n);
+        m_ptr = m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
     _RBIterator operator+(difference_type n)
     {
 	// *** Your code goes here (4 marks)40
-        m_rb->stepForward(m_ptr, n);
+        m_ptr = m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
@@ -321,7 +321,7 @@ public:
     const_iterator cbegin() const
     {
 	// *** Your code goes here (2 marks)70
-        return iterator(*this,m_begin);
+        return iterator(this,m_begin);
     }
 
     /** @brief Capacity of the RingBuffer.

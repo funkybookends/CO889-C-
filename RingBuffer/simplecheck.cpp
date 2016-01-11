@@ -18,10 +18,11 @@
  */
 
 #include "RingBuffer.hpp"
+#include <iostream>
 
 using namespace std;
 
-void dump(RingBuffer<int> rb){
+void dump(RingBuffer<int>& rb){
 	for (auto it = rb.begin(); it != rb.end(); ++it) {
 		cout << *it << " ";
 	}
@@ -31,6 +32,7 @@ void dump(RingBuffer<int> rb){
 int main()
 {
     RingBuffer<int> rb(7);
+    cout << rb.capacity() << " " << rb.size() << endl;
     rb.push_back(3);
     dump(rb);
     return 0;
