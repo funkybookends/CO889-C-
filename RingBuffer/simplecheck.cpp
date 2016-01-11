@@ -21,8 +21,17 @@
 
 using namespace std;
 
+void dump(RingBuffer<int> rb){
+	for (auto it = rb.begin(); it != rb.end(); ++it) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
 int main()
 {
     RingBuffer<int> rb(7);
+    rb.push_back(3);
+    dump(rb);
     return 0;
 }
