@@ -156,7 +156,7 @@ public:
     _RBIterator& operator++()
     {
 	// *** Your code goes here (4 marks)16
-        stepForward(m_ptr,1);
+        m_rb->stepForward(m_ptr,1);
         return *this;
     }
 
@@ -164,14 +164,14 @@ public:
     {
 	// *** Your code goes here (6 marks)22
         Pointer temp = m_ptr;
-        stepForward(m_ptr,1);
+        m_rb->stepForward(m_ptr,1);
         return *temp;
     }
 
     _RBIterator& operator--()
     {
 	// *** Your code goes here (4 marks)26
-        stepForward(m_ptr, -1);
+        m_rb->stepForward(m_ptr, -1);
         return *this;
     }
 
@@ -179,21 +179,21 @@ public:
     {
 	// *** Your code goes here (6 marks)32
         Pointer temp = m_ptr;
-        stepForward(m_ptr,-1);
+        m_rb->stepForward(m_ptr,-1);
         return *temp;
     }
 
     _RBIterator& operator+=(difference_type n)
     {
 	// *** Your code goes here (4 marks)36
-        stepForward(m_ptr, n);
+        m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
     _RBIterator operator+(difference_type n)
     {
 	// *** Your code goes here (4 marks)40
-        stepForward(m_ptr, n);
+        m_rb->stepForward(m_ptr, n);
         return *this;
     }
 
@@ -288,7 +288,8 @@ public:
 	: RingBuffer(pattern.capacity())
     {
 	// *** Your code goes here (4 marks)62
-        m_buffer = new T[pattern.capacity() + 1]; //make a new array of the 
+        int cap = pattern.capacity;
+        m_buffer = new T[cap + 1]; //make a new array of the 
                                                 //right size
         m_base = m_buffer.get(); //find its base value
         m_limit = m_base + pattern.capacity() + 1; //and set the limit
