@@ -450,9 +450,11 @@ private:
     {
 	// *** Your code goes here (18 marks)130
         //check the end condition
-        if (steps == 0) { return ptr; }
+        if (steps == 0){
+            return ptr;
+        }
 
-        //do the stepping
+        //take a step
         else if (steps > 0) {
             ptr++;
             steps --;
