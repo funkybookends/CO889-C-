@@ -514,7 +514,7 @@ private:
         else if (ptr == m_base-1) {ptr = m_limit;}
 
         //return the next step
-        return stepForward(ptr, steps)
+        return stepForward(ptr, steps);
     }
 };
 
