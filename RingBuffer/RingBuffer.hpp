@@ -490,6 +490,8 @@ bool operator==(const RingBuffer<T>& l,
 		const RingBuffer<T>& r)
 {
     return false;  // *** Replace this with your code (22 marks)152
+    //gets two const iterators and iterates through them checking that
+    // all the elements are the same
 }
 
 template <typename T>
