@@ -290,6 +290,7 @@ public:
     iterator begin()
     {
 	// *** Your code goes here (2 marks)66
+        return _RBIterator(*this,m_begin);
     }
 
     const_iterator begin() const
