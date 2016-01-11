@@ -392,6 +392,12 @@ public:
     void push_back(const T& elem)
     {
 	// *** Your code goes here (12 marks)110
+        //puts the elemet at the end if there is space
+        //and then steps m_end forward
+        if (size()<capacity()){
+            *m_end = elem;
+            stepForward(m_end);
+        }
     }
 
     size_type size() const
