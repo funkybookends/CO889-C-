@@ -157,6 +157,7 @@ public:
     {
 	// *** Your code goes here (4 marks)16
         stepForward(m_ptr,1);
+        return *this;
     }
 
     _RBIterator operator++(int)
@@ -168,6 +169,7 @@ public:
     {
 	// *** Your code goes here (4 marks)26
         stepForward(m_ptr, -1);
+        return *this;
     }
 
     _RBIterator operator--(int)
@@ -178,6 +180,8 @@ public:
     _RBIterator& operator+=(difference_type n)
     {
 	// *** Your code goes here (4 marks)36
+        stepForward(m_ptr, n);
+        return *this;
     }
 
     _RBIterator operator+(difference_type n)
