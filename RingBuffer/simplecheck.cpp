@@ -23,8 +23,18 @@
 
 using namespace std; 
 
-void my_dump(RingBuffer<int>& rb){ 
+void my_dump_ref(RingBuffer<int>& rb){ 
+	if (rb.cbegin() == rb.cend()) {
+		cout<<"empty\n";
+	}
+	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
+		//cout <<"dumping \n\n";
+		cout << *it << " ";//"-- ";
+	}
+	cout << endl;
+}
 
+void my_dump(RingBuffer<int> rb){ 
 	if (rb.cbegin() == rb.cend()) {
 		cout<<"empty\n";
 	}
@@ -40,27 +50,11 @@ int main()
     RingBuffer<int> rb(7);
     cout<<rb.capacity()<<" "<<rb.size()<<endl;
     assert(rb.begin() == rb.end());
-    int in = 3;
-    rb.push_back(in);
- //    cout<<"displaying end\n";
- //    rb.end();
- //    cout<<endl;
- //    //assert(rb.begin() != rb.end());
- //    cout<<"start dump1";
- //    for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
-	// 	cout <<"dumping1 \n\n";
-	// 	cout << *it << ":\n";
-	// }
-	// cout<<"\nstart dump2\n";
-	// if (rb.cbegin() == rb.cend()) {
-	// 	cout<<"empty\n";
-	// }
-	// for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
-	// 	cout <<"dumping \n\n";
-	// 	cout << *it << ": ";
-	// }
-	// cout << endl;
-	// cout<<"\nstart dump3\n";
+    rb.push_back(3);
 	my_dump(rb);
+	my_dump_ref(rb);
+	rb.push_back(5);
+	my_dump(rb);
+	my_dump_ref(rb);
     return 0;
 }
