@@ -19,12 +19,27 @@
 
 #include "RingBuffer.hpp"
 #include <iostream>
+#include <assert.h>
 
 using namespace std;
 
-void dump(RingBuffer<int>& rb){
-	for (auto it = rb.begin(); it != rb.end(); ++it) {
+void my_dump_ref(RingBuffer<int>& rb){ 
+	if (rb.cbegin() == rb.cend()) {
+		cout<<"empty\n";
+	}
+	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
 		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void my_dump(RingBuffer<int> rb){ 
+	if (rb.cbegin() == rb.cend()) {
+		cout<<"empty\n";
+	}
+	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
+		//cout <<"dumping \n\n";
+		cout << *it << " ";//"-- ";
 	}
 	cout << endl;
 }
@@ -32,8 +47,13 @@ void dump(RingBuffer<int>& rb){
 int main()
 {
     RingBuffer<int> rb(7);
-    cout << rb.capacity() << " " << rb.size() << endl;
+    cout<<rb.capacity()<<" "<<rb.size()<<endl;
+    assert(rb.begin() == rb.end());
     rb.push_back(3);
-    dump(rb);
+	my_dump(rb);
+	my_dump_ref(rb);
+	rb.push_back(5);
+	my_dump(rb);
+	my_dump_ref(rb);
     return 0;
 }

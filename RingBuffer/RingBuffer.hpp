@@ -289,7 +289,9 @@ public:
     {
 	// *** Your code goes here (4 marks)62
         //copies contents of pattern into base
-        std::copy(pattern.m_base, pattern.m_limit, m_begin);
+        for (auto it = pattern.cbegin(); it!=pattern.cend(); ++it){
+            push_back(*it);
+        }
     }
 
     ~RingBuffer()
@@ -421,7 +423,7 @@ public:
         //and then steps m_end forward
         if (size()<capacity()){
             *m_end = elem;
-            stepForward(m_end, 1);
+            m_end = stepForward(m_end, 1);
         }
     }
 
