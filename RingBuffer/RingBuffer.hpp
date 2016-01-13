@@ -153,7 +153,7 @@ public:
 	return !operator==(rhs);
     }
 
-    _RBIterator& operator++()
+    _RBIterator& operator++() 
     {
 	// *** Your code goes here (4 marks)16
         m_ptr = m_rb->stepForward(m_ptr,1);
@@ -163,9 +163,9 @@ public:
     _RBIterator operator++(int)
     {
 	// *** Your code goes here (6 marks)22
-        Pointer temp = m_ptr;
-        m_ptr = m_rb->stepForward(m_ptr,1);
-        return *temp;
+        _RBIterator temp = *this;
+        ++(*this);
+        return temp;
     }
 
     _RBIterator& operator--()
@@ -178,8 +178,8 @@ public:
     _RBIterator operator--(int)
     {
 	// *** Your code goes here (6 marks)32
-        Pointer temp = m_ptr;
-        m_ptr = m_rb->stepForward(m_ptr,-1);
+        _RBIterator temp = *this;
+        --(*this);
         return *temp;
     }
 
