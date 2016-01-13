@@ -42,7 +42,9 @@ simplecheck.ok : simplecheck simplecheck.cpp RingBuffer.hpp
 #we can also define how a test should fail. see the slides
 
 simplecheck : simplecheck.cpp RingBuffer.hpp
+	@echo "\n\n\t\tBUILDING!!!"
 	g++ -g -std=c++11 -Wall -o simplecheck simplecheck.cpp
+	@echo "\t\tBUILT!!!"
 # simplecheck : $(OBJECTS)
 # 	$(LINK.cpp) -o $@ $(OBJECTS)
 
