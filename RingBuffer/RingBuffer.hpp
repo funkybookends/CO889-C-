@@ -180,7 +180,7 @@ public:
 	// *** Your code goes here (6 marks)32
         _RBIterator temp = *this;
         --(*this);
-        return *temp;
+        return temp;
     }
 
     _RBIterator& operator+=(difference_type n)

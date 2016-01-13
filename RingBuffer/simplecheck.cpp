@@ -62,5 +62,9 @@ int main()
 	assert(ita!=itb);
 	assert(3==*(itb++));
 	assert(ita==itb);
+	--ita;
+	assert(ita!=itb);
+	assert(5==*(itb--));
+	assert(ita==itb);
     return 0;
 }
