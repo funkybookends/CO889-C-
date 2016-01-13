@@ -206,11 +206,8 @@ public:
     difference_type
     operator-(const _RBIterator& rhs) const
     {
-	return 0;  // *** Replace this with your code (14 marks)54
-        //this should calculate the difference between the two iterators
-        // difference_type diff = 0;
-        // _RBIterator start = *this;
-        // while (*this!=)
+	//return 0;  // *** Replace this with your code (14 marks)54
+        return rhs.m_ptr - m_ptr;
     }
 
     Reference operator[](difference_type n)
@@ -238,7 +235,7 @@ inline bool
 operator<(const _RBIterator<T, Pointer, Reference>& l,
 	  const _RBIterator<T, Pointer, Reference>& r)
 {
-    return false;  // *** Replace this with your code (2 marks)58
+    //return false;  // *** Replace this with your code (2 marks)58
     //checks if  the iterator is before the other
     if (l==r) { return false;}
 

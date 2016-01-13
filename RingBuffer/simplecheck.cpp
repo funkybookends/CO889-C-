@@ -18,53 +18,43 @@
  */
 
 #include "RingBuffer.hpp"
-#include <iostream>
 #include <assert.h>
 
 using namespace std;
 
-void my_dump_ref(RingBuffer<int>& rb){ 
-	if (rb.cbegin() == rb.cend()) {
-		cout<<"empty\n";
-	}
-	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
-		cout << *it << " ";
-	}
-	cout << endl;
-}
-
-void my_dump(RingBuffer<int> rb){ 
-	if (rb.cbegin() == rb.cend()) {
-		cout<<"empty\n";
-	}
-	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
-		cout << *it << " ";
-	}
-	cout << endl;
-}
-
 int main()
 {
-    RingBuffer<int> rb(7); 
-    cout<<rb.capacity()<<" "<<rb.size()<<endl;
-    assert(rb.begin() == rb.end());
-    rb.push_back(3);
-    assert(rb.begin() != rb.end());
-	my_dump(rb);
-	my_dump_ref(rb);
-	rb.push_back(5);
-	my_dump(rb);
-	my_dump_ref(rb);
-	auto ita = rb.begin();
-	auto itb = rb.begin();
-	assert(ita==itb);
-	++ita;
-	assert(ita!=itb);
-	assert(3==*(itb++));
-	assert(ita==itb);
-	--ita;
-	assert(ita!=itb);
-	assert(5==*(itb--));
-	assert(ita==itb);
+	//simple tests
+	{
+		unsigned int test_capacity = 4;
+	    RingBuffer<unsigned int> rb(test_capacity); 
+	    { //Capacity tests, size test and push back tests
+		    assert(rb.capacity()==test_capacity);
+		    assert(rb.size()==0);
+		    for (unsigned int i = 1; i<=test_capacity; i++){
+		    	rb.push_back(i);
+			    assert(rb.capacity()==4);
+			    assert(rb.size()==i);	
+		    }
+		} //close scope
+		{ //increment iterator tests and 
+		    unsigned int i = 1;
+		    auto iterator = rb.begin();
+		    while (i != test_capacity){
+		    	assert(*iterator==i);
+		    	assert(i==(*iterator++));
+		    	++i;
+		    }
+		} //close scope
+	    { //test const iterator
+	    	unsigned int i = 1;
+		    auto c_iterator = rb.cbegin();
+		    while (i != test_capacity){
+		    	assert(*c_iterator==i);
+		    	assert(i==(*c_iterator++));
+		    	++i;
+		    }
+		}
+	}
     return 0;
 }
