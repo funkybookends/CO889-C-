@@ -45,7 +45,7 @@ void my_dump(RingBuffer<int> rb){
 
 int main()
 {
-    RingBuffer<int> rb(7);
+    RingBuffer<int> rb(7); 
     cout<<rb.capacity()<<" "<<rb.size()<<endl;
     assert(rb.begin() == rb.end());
     rb.push_back(3);
@@ -55,5 +55,12 @@ int main()
 	rb.push_back(5);
 	my_dump(rb);
 	my_dump_ref(rb);
+	auto ita = rb.begin();
+	auto itb = rb.begin();
+	assert(ita==itb);
+	++ita;
+	assert(ita!=itb);
+	assert(3==*(itb++));
+	assert(ita==itb);
     return 0;
 }
