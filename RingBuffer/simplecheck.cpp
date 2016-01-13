@@ -38,8 +38,7 @@ void my_dump(RingBuffer<int> rb){
 		cout<<"empty\n";
 	}
 	for (auto it = rb.cbegin(); it != rb.cend(); ++it) {
-		//cout <<"dumping \n\n";
-		cout << *it << " ";//"-- ";
+		cout << *it << " ";
 	}
 	cout << endl;
 }
@@ -50,6 +49,7 @@ int main()
     cout<<rb.capacity()<<" "<<rb.size()<<endl;
     assert(rb.begin() == rb.end());
     rb.push_back(3);
+    assert(rb.begin() != rb.end());
 	my_dump(rb);
 	my_dump_ref(rb);
 	rb.push_back(5);
