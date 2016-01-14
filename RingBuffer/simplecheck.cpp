@@ -28,11 +28,13 @@ int main()
 	{
 		unsigned int test_capacity = 4;
 	    RingBuffer<unsigned int> rb(test_capacity); 
+	    assert(rb.empty());
 	    { //Capacity tests, size test and push back tests
 		    assert(rb.capacity()==test_capacity);
 		    assert(rb.size()==0);
 		    for (unsigned int i = 1; i<=test_capacity; i++){
 		    	rb.push_back(i);
+		    	assert(!rb.empty());
 			    assert(rb.capacity()==4);
 			    assert(rb.size()==i);	
 		    }

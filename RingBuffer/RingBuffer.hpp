@@ -251,16 +251,7 @@ operator<(const _RBIterator<T, Pointer, Reference>& l,
 {
     //return false;  // *** Replace this with your code (2 marks)58
     //checks if  the iterator is before the other
-    if (l==r) { return false;}
-
-    auto L = l; //copy of L that is not const
-    while (L!=l.m_rb.end()){
-        if (++L==r) { //increment and check if equal
-            return true;
-        }
-    }
-    //if l could not be incremented up to r, it must be bigger.
-    return false;
+    return (r-l)>0;
 }
 
 /** @brief Ring Buffer.
