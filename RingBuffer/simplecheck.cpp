@@ -67,6 +67,12 @@ int main()
 			for (auto it=rb.begin(); it!=rb.end(); ++it){
 				assert(it-start == i);
 				assert(start-it == -i);
+				if (it!=start) {
+					assert(start<it);
+				}
+				else {
+					assert(!(start<it));
+				}
 				++i;
 			}
 		}
