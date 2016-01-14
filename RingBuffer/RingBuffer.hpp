@@ -207,14 +207,19 @@ public:
     operator-(const _RBIterator& rhs) const
     {
 	//return 0;  // *** Replace this with your code (14 marks)54
-        return rhs.m_ptr - m_ptr;
+        if (m_rb.begin().m_ptr <= m_rb.end().m_ptr()){
+            return rhs.m_ptr - m_ptr;
+        }
+        else {
+            return 0;
+        }
     }
 
     Reference operator[](difference_type n)
     {
 	// *** Your code goes here (2 marks)56
         //gets an iterator at the beginning, and steps it forward n times;
-        return *(stepForward(m_rb.begin(), n));
+        return *(m_rb->stepForward(m_rb->m_begin, n));
     }
 private:
     // Pointer to the RingBuffer to which this iterator relates:
