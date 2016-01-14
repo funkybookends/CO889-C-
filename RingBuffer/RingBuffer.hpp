@@ -207,11 +207,20 @@ public:
     operator-(const _RBIterator& rhs) const
     {
 	//return 0;  // *** Replace this with your code (14 marks)54
-        if (m_rb.begin().m_ptr <= m_rb.end().m_ptr()){
-            return rhs.m_ptr - m_ptr;
+        if (m_rb->begin().m_ptr <= m_rb->end().m_ptr){
+            return m_ptr - (rhs.m_ptr);
         }
         else {
-            return 0;
+            difference_type count = 0;
+            auto it = m_rb->begin();
+            while (it!=*this) {
+                ++it;
+            }
+            while (it!=rhs){
+                ++it;
+                ++count;
+            }
+            return count;
         }
     }
 

@@ -61,6 +61,15 @@ int main()
 				assert(it[i]==(i+1));
 			}
 		}
+		{
+			auto start = rb.begin();
+			signed int i = 0;
+			for (auto it=rb.begin(); it!=rb.end(); ++it){
+				assert(it-start == i);
+				assert(start-it == -i);
+				++i;
+			}
+		}
 	}
     return 0;
 }
