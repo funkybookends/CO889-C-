@@ -55,6 +55,12 @@ int main()
 		    	++i;
 		    }
 		}
+		{
+			for (unsigned int i = 0; i <test_capacity; ++i){
+				auto it = rb.begin();
+				assert(it[i]==(i+1));
+			}
+		}
 	}
     return 0;
 }
