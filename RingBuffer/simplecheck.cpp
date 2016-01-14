@@ -79,5 +79,28 @@ int main()
 			}
 		}
 	}
+	{//equality tests
+		RingBuffer<int> rba(10);
+		RingBuffer<int> rbb(20);
+		assert(rba==rbb);
+		for (int i = 0; i < 7; ++i){
+			rba.push_back(i);
+			assert(rba!=rbb);
+			rbb.push_back(i);
+			assert(rba==rbb);
+		}
+		for (int i = 0; i < 5; ++i){
+			rba.pop_front();
+			assert(rba!=rbb);
+			rbb.pop_front();
+			assert(rba==rbb);
+		}
+		for (int i = 0; i < 8; ++i){
+			rba.push_back(i);
+			assert(rba!=rbb);
+			rbb.push_back(i);
+			assert(rba==rbb);
+		}
+	}
     return 0;
 }
