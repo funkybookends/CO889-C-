@@ -22,6 +22,41 @@
 
 using namespace std;
 
+//list of functions to test
+// Iterator Functions
+
+// copy constructor operator=
+// operator*
+// operator->
+// operator==
+// operator++
+// operator++(int)
+// operator--
+// operator--(int)
+// operator+=
+// operator+(difference_type n)
+// operator-(it)
+// operator[](difference_type)
+// operator<
+
+// RB functions
+
+// begin
+// begin() const
+// cbegin() const
+// capacity()
+// clear()
+// empty()
+// end
+// end() const
+// cend() const
+// front
+// const front() const
+// pop_front()
+// push_back
+// size()
+// operator==
+
 int main()
 {
 	//simple tests
@@ -89,16 +124,24 @@ int main()
 			rbb.push_back(i);
 			assert(rba==rbb);
 		}
+		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 5; ++i){
 			rba.pop_front();
 			assert(rba!=rbb);
 			rbb.pop_front();
 			assert(rba==rbb);
 		}
+		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 8; ++i){
 			rba.push_back(i);
 			assert(rba!=rbb);
 			rbb.push_back(i);
+			assert(rba==rbb);
+		}
+		for (int i = 0; i < 5; ++i){
+			rba.pop_front();
+			assert(rba!=rbb);
+			rbb.pop_front();
 			assert(rba==rbb);
 		}
 	}
