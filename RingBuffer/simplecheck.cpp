@@ -126,6 +126,8 @@ int main()
 		}
 		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 5; ++i){
+			assert(*(rba.begin())==i);
+			assert(*(rba.cbegin())==i);
 			rba.pop_front();
 			assert(rba!=rbb);
 			rbb.pop_front();
