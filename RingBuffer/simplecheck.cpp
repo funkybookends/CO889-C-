@@ -124,66 +124,80 @@ int main()
 		}
 	}
 	{//equality tests
-		RingBuffer<int> rba(13);
-		RingBuffer<int> rbb(20);
-		assert(rba==rbb);
-		for (int i = 0; i < 7; ++i){
-			rba.push_back(i);
-			assert(rba!=rbb);
-			rbb.push_back(i);
+		RingBuffer<int> rba(200);
+		RingBuffer<int> rbb(200);
+		for (int t = 0; t < 20; ++t){
 			assert(rba==rbb);
-			assert(rba.size()==i+1);
-		}
-		{
-			auto it = rba.begin();
-			it+=6;
-			assert(*it == 6);
-		}
-		assert(rba.begin()<rba.end());
-		for (int i = 0; i < 5; ++i){
-			assert(*(rba.begin())==i);
-			assert(*(rba.cbegin())==i);
-			rba.pop_front();
-			assert(rba!=rbb);
-			rbb.pop_front();
-			assert(rba==rbb);
+			for (int i = 0; i < 7; ++i){
+				rba.push_back(i);
+				assert(rba!=rbb);
+				rbb.push_back(i);
+				assert(rba==rbb);
+				//assert(rba.size()==i+1);
+			}
+			{
+				auto it = rba.begin();
+				it+=6;
+				//assert(*it == 6);
+			}
+			assert(rba.begin()<rba.end());
+			for (int i = 0; i < 5; ++i){
+				//assert(*(rba.begin())==i);
+				//assert(*(rba.cbegin())==i);
+				rba.pop_front();
+				assert(rba!=rbb);
+				rbb.pop_front();
+				assert(rba==rbb);
 
-			auto mover = rba.begin();
-			auto stayer = rba.begin();
-			++mover;
-			assert(mover!=stayer);
-			assert(*mover != * stayer);
-			mover = stayer;
-			assert(stayer == mover);
-			assert(*mover == *stayer);
-		}
-		assert(rba.begin()<rba.end());
-		for (int i = 0; i < 8; ++i){
-			assert(rba.size()==rbb.size());
-			cout << "size: " << rba.size() <<endl;
-			cout << "size: " << rbb.size() <<endl;
-			rba.push_back(i);
-			cout << "size: " << rba.size() <<endl;
-			assert(rba.size()-1 == rbb.size());
-			assert(rba!=rbb);
-			rbb.push_back(i);
-			cout << "size: " << rba.size() <<endl;
-			assert(rba.size()==rbb.size());
-			print(rba);
-			print(rbb);
-			assert(rba==rbb);
-		}
-		for (int i = 0; i < 5; ++i){
-			rba.pop_front();
-			assert(rba!=rbb);
-			rbb.pop_front();
-			assert(rba==rbb);
+				auto mover = rba.begin();
+				auto stayer = rba.begin();
+				++mover;
+				assert(mover!=stayer);
+				assert(*mover != * stayer);
+				mover = stayer;
+				assert(stayer == mover);
+				assert(*mover == *stayer);
+			}
+			assert(rba.begin()<rba.end());
+			for (int i = 0; i < 8; ++i){
+				assert(rba.size()==rbb.size());
+				cout << "size: " << rba.size() <<endl;
+				cout << "size: " << rbb.size() <<endl;
+				rba.push_back(i);
+				cout << "size: " << rba.size() <<endl;
+				assert(rba.size()-1 == rbb.size());
+				assert(rba!=rbb);
+				rbb.push_back(i);
+				cout << "size: " << rba.size() <<endl;
+				assert(rba.size()==rbb.size());
+				print(rba);
+				print(rbb);
+				assert(rba==rbb);
+			}
+			{
+				auto ita = rba.begin();
+				auto itb = rbb.begin();
+				ita+=3;
+				--ita;
+				--ita;
+				--ita;
+				assert(*itb==*ita);
+				assert(ita!=itb);
+				itb = ita;
+				assert(ita==itb);
+			}
+			for (int i = 0; i < 5; ++i){
+				rba.pop_front();
+				assert(rba!=rbb);
+				rbb.pop_front();
+				assert(rba==rbb);
 
-			auto it = rba.begin();
-			auto ib = rbb.begin();
-			assert(it!=ib);
-			ib = it;
-			assert(it==ib);
+				auto it = rba.begin();
+				auto ib = rbb.begin();
+				assert(it!=ib);
+				ib = it;
+				assert(it==ib);
+			}
 		}
 		print(rba);
 		print(rbb);
