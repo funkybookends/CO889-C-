@@ -359,7 +359,7 @@ public:
     bool empty() const
     {
 	//return false;  // *** Replace this with your code (2 marks)78
-        return m_begin == m_end;
+        return size()==0;
     }
 
     iterator end()
@@ -527,6 +527,9 @@ bool operator==(const RingBuffer<T>& l,
     //return false;  // *** Replace this with your code (22 marks)152
     //gets two const iterators and iterates through them checking that
     // all the elements are the same
+    if (l.size() != r.size()){
+        return false;
+    }
     auto L = l.cbegin();
     auto R = r.cbegin();
 
