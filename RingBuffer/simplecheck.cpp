@@ -132,6 +132,15 @@ int main()
 			assert(rba!=rbb);
 			rbb.pop_front();
 			assert(rba==rbb);
+
+			auto mover = rba.begin();
+			auto stayer = rba.begin();
+			++mover;
+			assert(mover!=stayer);
+			assert(*mover != * stayer);
+			mover = stayer;
+			assert(stayer == mover);
+			assert(*mover == *stayer);
 		}
 		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 8; ++i){
@@ -145,6 +154,12 @@ int main()
 			assert(rba!=rbb);
 			rbb.pop_front();
 			assert(rba==rbb);
+
+			auto it = rba.begin();
+			auto ib = rbb.begin();
+			assert(it!=ib);
+			ib = it;
+			assert(it==ib);
 		}
 	}
     return 0;
