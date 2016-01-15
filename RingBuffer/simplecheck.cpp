@@ -19,6 +19,7 @@
 
 #include "RingBuffer.hpp"
 #include <assert.h>
+#include <iostream>
 
 using namespace std;
 
@@ -56,6 +57,14 @@ using namespace std;
 // push_back
 // size()
 // operator==
+
+void print(RingBuffer<int> rb){
+	cout << "RB contains: ";
+	for (auto it = rb.cbegin(); it!=rb.cend(); ++it){
+		cout << *it << " ";
+	}
+	cout<<endl;
+}
 
 int main()
 {
@@ -115,7 +124,7 @@ int main()
 		}
 	}
 	{//equality tests
-		RingBuffer<int> rba(10);
+		RingBuffer<int> rba(13);
 		RingBuffer<int> rbb(20);
 		assert(rba==rbb);
 		for (int i = 0; i < 7; ++i){
@@ -123,6 +132,7 @@ int main()
 			assert(rba!=rbb);
 			rbb.push_back(i);
 			assert(rba==rbb);
+			assert(rba.size()==i+1);
 		}
 		{
 			auto it = rba.begin();
@@ -149,9 +159,18 @@ int main()
 		}
 		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 8; ++i){
+			assert(rba.size()==rbb.size());
+			cout << "size: " << rba.size() <<endl;
+			cout << "size: " << rbb.size() <<endl;
 			rba.push_back(i);
+			cout << "size: " << rba.size() <<endl;
+			assert(rba.size()-1 == rbb.size());
 			assert(rba!=rbb);
 			rbb.push_back(i);
+			cout << "size: " << rba.size() <<endl;
+			assert(rba.size()==rbb.size());
+			print(rba);
+			print(rbb);
 			assert(rba==rbb);
 		}
 		for (int i = 0; i < 5; ++i){
@@ -166,12 +185,16 @@ int main()
 			ib = it;
 			assert(it==ib);
 		}
+		print(rba);
+		print(rbb);
 		rba.clear();
 		assert(rba.empty());
 		assert(rba.begin() == rba.end());
 		assert(rba.cbegin() == rba.cend());
 		assert(rba!=rbb);
 		rbb.clear();
+		print(rba);
+		print(rbb);
 		assert(rba==rbb);
 	}
     return 0;

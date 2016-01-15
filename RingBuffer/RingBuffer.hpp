@@ -29,6 +29,7 @@
 #include <cstddef>
 #include <iterator>
 #include <memory>
+#include <assert.h>
 
 // This class template needs to be predeclared because the definition
 // of class template _RBIterator refers to it.
@@ -436,7 +437,7 @@ public:
             return m_end - m_begin;
         }
         else {
-            return m_begin - m_end;
+            return m_end-m_base+m_limit-m_begin;
         }
     }
 private:
@@ -533,24 +534,20 @@ bool operator==(const RingBuffer<T>& l,
     auto L = l.cbegin();
     auto R = r.cbegin();
 
-    bool equal = true;
-
-    while (equal){
+    while (L!=l.cend() && R!=r.cend()){
         if (*L != *R) { //they must have the same content
-            equal = false;
+            return false;
         }
-        if ((L==l.cend()) && (R==r.cend())){ //if they are both at the end.
-            break;
-        }
-        //else increment
+        //increment
         ++L;
         ++R;
-        //and check that neither are at the end.
+        //see if only one is at the end.
         if ((L==l.cend()) ^ (R==r.cend())){ //exclusive or
-            equal = false;
+            return false;
         }
     }
-    return equal;
+    //must be the same
+    return true;
 }
 
 template <typename T>

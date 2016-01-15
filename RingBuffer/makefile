@@ -31,7 +31,7 @@ test : simplecheck.ok simplecheck RingBuffer.hpp simplecheck.cpp
 
 simplecheck.ok : simplecheck simplecheck.cpp RingBuffer.hpp
 	@echo "testing"
-	@./simplecheck
+	./simplecheck
 	@echo "passed"
 
 #TheTest
