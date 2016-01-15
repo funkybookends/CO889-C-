@@ -533,23 +533,24 @@ bool operator==(const RingBuffer<T>& l,
     auto L = l.cbegin();
     auto R = r.cbegin();
 
-    while (L!=l.cend()){
+    bool equal = true;
+
+    while (equal){
         if (*L != *R) { //they must have the same content
-            return false;
+            equal = false;
         }
-        if (R == r.cend()){ //we're here because L is not cend, so R can't be
-            return false;
+        if ((L==l.cend()) && (R==r.cend())){ //if they are both at the end.
+            break;
         }
-        ++L; //increment
+        //else increment
+        ++L;
         ++R;
+        //and check that neither are at the end.
+        if ((L==l.cend()) ^ (R==r.cend())){ //exclusive or
+            equal = false;
+        }
     }
-    //they had they same content
-    if (R == r.cend()) { // so if R is at the end as well, then we're good
-        return true;
-    }
-    else { // R is not at the end, so not the same.
-        return false;
-    }
+    return equal;
 }
 
 template <typename T>

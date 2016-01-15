@@ -124,6 +124,11 @@ int main()
 			rbb.push_back(i);
 			assert(rba==rbb);
 		}
+		{
+			auto it = rba.begin();
+			it+=6;
+			assert(*it == 6);
+		}
 		assert(rba.begin()<rba.end());
 		for (int i = 0; i < 5; ++i){
 			assert(*(rba.begin())==i);
@@ -161,6 +166,13 @@ int main()
 			ib = it;
 			assert(it==ib);
 		}
+		rba.clear();
+		assert(rba.empty());
+		assert(rba.begin() == rba.end());
+		assert(rba.cbegin() == rba.cend());
+		assert(rba!=rbb);
+		rbb.clear();
+		assert(rba==rbb);
 	}
     return 0;
 }
