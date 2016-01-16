@@ -29,7 +29,6 @@
 #include <cstddef>
 #include <iterator>
 #include <memory>
-#include <assert.h>
 
 // This class template needs to be predeclared because the definition
 // of class template _RBIterator refers to it.
