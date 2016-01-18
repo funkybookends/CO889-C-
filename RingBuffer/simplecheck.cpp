@@ -125,8 +125,8 @@ int main()
 	}
 	{//equality tests
 		RingBuffer<int> rba(200);
-		RingBuffer<int> rbb(200);
-		for (int t = 0; t < 20; ++t){
+		RingBuffer<int> rbb(100);
+		for (int t = 0; t < 2; ++t){
 			assert(rba==rbb);
 			for (int i = 0; i < 7; ++i){
 				rba.push_back(i);
@@ -197,6 +197,11 @@ int main()
 				assert(it!=ib);
 				ib = it;
 				assert(it==ib);
+				
+				auto itc = rba.begin();
+				auto itd = rbb.begin();
+				++itd;
+				itc = itd;
 			}
 		}
 		print(rba);
@@ -210,6 +215,21 @@ int main()
 		print(rba);
 		print(rbb);
 		assert(rba==rbb);
+	}
+	{
+		RingBuffer<int> rb(2);
+		rb.push_back(1);
+		rb.push_back(1);
+		try {
+			rb.push_back(1);
+		}
+		catch (std::length_error& error){
+			cout << "error caught successfully" <<endl;
+		}
+		catch (...) {
+			cout<<"Not the correct error"<<endl;
+			assert(false);
+		}
 	}
     return 0;
 }
