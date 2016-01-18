@@ -427,6 +427,9 @@ public:
             *m_end = elem;
             m_end = stepForward(m_end, 1);
         }
+		else {
+			throw std::length_error("RingBuffer is full. Cannot push_back another value.");
+		}
     }
 
     size_type size() const
