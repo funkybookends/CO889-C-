@@ -227,7 +227,7 @@ public:
     Reference operator[](difference_type n)
     {
 	// *** Your code goes here (2 marks)56
-        //gets an iterator at the beginning, and steps it forward n times;
+        //returns a pointer to a place n places along
         return *(m_rb->stepForward(m_ptr, n));
     }
 private:

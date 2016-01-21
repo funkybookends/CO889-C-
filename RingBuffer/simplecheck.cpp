@@ -244,5 +244,23 @@ int main()
 		}
 		print(rb);
 	}
+	{
+		RingBuffer<int> rb(5);
+		for (int i = 0; i< 5; i++){
+			rb.push_back(i);
+		}
+		auto it = rb.begin();
+		auto itc = rb.cbegin();
+		assert (it[0]==0);
+		++it;
+		assert (it[1]==2);
+		assert(it[2]==3);
+
+		assert (itc[0]==0);
+		++itc;
+		assert (itc[1]==2);
+		assert(itc[2]==3);
+
+	}
     return 0;
 }
