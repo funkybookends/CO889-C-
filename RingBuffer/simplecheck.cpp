@@ -126,6 +126,7 @@ int main()
 	{//equality tests
 		RingBuffer<int> rba(200);
 		RingBuffer<int> rbb(100);
+		unsigned int expected_size = 0;
 		for (int t = 0; t < 2; ++t){
 			assert(rba==rbb);
 			for (int i = 0; i < 7; ++i){
@@ -133,7 +134,8 @@ int main()
 				assert(rba!=rbb);
 				rbb.push_back(i);
 				assert(rba==rbb);
-				//assert(rba.size()==i+1);
+				expected_size++;
+				assert(rba.size()==expected_size);
 			}
 			{
 				auto it = rba.begin();
@@ -148,6 +150,8 @@ int main()
 				assert(rba!=rbb);
 				rbb.pop_front();
 				assert(rba==rbb);
+				expected_size--;
+				assert(rba.size()==expected_size);
 
 				auto mover = rba.begin();
 				auto stayer = rba.begin();
@@ -168,8 +172,11 @@ int main()
 				assert(rba.size()-1 == rbb.size());
 				assert(rba!=rbb);
 				rbb.push_back(i);
+				expected_size++;
 				cout << "size: " << rba.size() <<endl;
 				assert(rba.size()==rbb.size());
+				assert(rba.size()==expected_size);
+				assert(rbb.size()==expected_size);
 				print(rba);
 				print(rbb);
 				assert(rba==rbb);
@@ -190,7 +197,9 @@ int main()
 				rba.pop_front();
 				assert(rba!=rbb);
 				rbb.pop_front();
+				expected_size--;
 				assert(rba==rbb);
+				assert(rba.size() == expected_size);
 
 				auto it = rba.begin();
 				auto ib = rbb.begin();
@@ -260,6 +269,18 @@ int main()
 		++itc;
 		assert (itc[1]==2);
 		assert(itc[2]==3);
+
+	}
+	{
+		RingBuffer<int> rb(5);
+		for (int i = 0; i< 5; i++){
+			rb.push_back(i);
+			assert(rb.front() == 0);
+		}
+		for (int i =0; i<5; i++){
+			assert(rb.front() == i);
+			rb.pop_front();
+		}
 
 	}
     return 0;
