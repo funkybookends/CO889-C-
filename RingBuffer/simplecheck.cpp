@@ -260,6 +260,7 @@ int main()
 		++itc;
 		assert (itc[1]==2);
 		assert(itc[2]==3);
+		*it=4;
 
 	}
     return 0;

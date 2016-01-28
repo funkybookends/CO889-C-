@@ -319,13 +319,13 @@ public:
     const_iterator begin() const
     {
 	// *** Your code goes here (2 marks)68
-        return iterator(this,m_begin);
+        return const_iterator(this,m_begin);
     }
 
     const_iterator cbegin() const
     {
 	// *** Your code goes here (2 marks)70
-        return iterator(this,m_begin);
+        return const_iterator(this,m_begin);
     }
 
     /** @brief Capacity of the RingBuffer.
