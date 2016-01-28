@@ -516,12 +516,11 @@ bool operator==(const RingBuffer<T>& l,
 		const RingBuffer<T>& r)
 {
     //return false;  // *** Replace this with your code (22 marks)152
-    //gets two const iterators and iterates through them checking that
-    // all the elements are the same
+    // first check that the size is the same
     if (l.size() != r.size()){
         return false;
     }
-    auto L = l.cbegin();
+    auto L = l.cbegin(); //get two const iterators so we can compare elements
     auto R = r.cbegin();
 
     while (L!=l.cend() && R!=r.cend()){
@@ -533,10 +532,11 @@ bool operator==(const RingBuffer<T>& l,
         ++R;
         //see if only one is at the end.
         if ((L==l.cend()) ^ (R==r.cend())){ //exclusive or
+			//if either has more contents they they are not equivalent
             return false;
         }
     }
-    //must be the same
+    //must be the same since they both ended at the same time, and have the same contents.
     return true;
 }
 
