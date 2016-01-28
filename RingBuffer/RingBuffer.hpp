@@ -296,9 +296,6 @@ public:
     {
 	// *** Your code goes here (2 marks)64
         m_buffer = nullptr;
-        //do I need to delete the other things as well? they're not on the 
-        //free store
-
     }
 
     // The following declaration prevents the compiler from generating
