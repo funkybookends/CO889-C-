@@ -118,11 +118,7 @@ public:
     _RBIterator& operator=(const _RBIterator<T, P, R>& pattern)
     {
 	// *** Your code goes here (6 marks)6
-        // this function makes this iterator a copy of pattern
-        //it copies the pointer to the pattern
-        // and to the current pointer
-        //that doesn't seem enough for 6 marks though.
-
+        // copies the iterator pattern's data members over.
         m_rb = pattern.m_rb;
         m_ptr = pattern.m_ptr;
 
