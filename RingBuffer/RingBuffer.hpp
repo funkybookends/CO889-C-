@@ -492,13 +492,13 @@ private:
 			}
 		}
 		if (steps > 0){
-			if (ptr==m_limit){
+			if (ptr>=m_limit){
 				return stepForward(m_base, steps-1);
 			}
 			return stepForward(ptr+1, steps-1);
 		}
 		else {
-			if (ptr==m_base-1) {
+			if (ptr<=m_base-1) {
 				return stepForward(m_limit-1, steps+1);
 			}
 			return stepForward(ptr-1, steps+1);
