@@ -342,6 +342,8 @@ public:
         while (!empty()) {
             pop_front();
         }
+		if (m_begin != m_end) {exit(1);}
+		if (size()!=0){exit(2);}
     }
 
     /** @brief Test whether RingBuffer is empty.
@@ -433,7 +435,7 @@ public:
             return m_end - m_begin;
         }
         else {
-            return m_end-m_base+m_limit-m_begin;
+            return m_end - m_base + m_limit - m_begin;
         }
     }
 private:

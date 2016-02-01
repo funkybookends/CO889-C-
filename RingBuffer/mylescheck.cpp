@@ -30,7 +30,7 @@ int main()
     RingBuffer<int> rb(6);
     
     cout << rb.capacity() << ", " << rb.size() << ", " << rb.empty() << endl;
-	// expect 6, 0, 1
+	//1 expect 6, 0, 1
     
     rb.push_back(1);
     rb.push_back(2);
@@ -40,7 +40,7 @@ int main()
     rb.push_back(6);
     
     cout << rb.capacity() << ", " << rb.size() << ", " << rb.empty() << endl;
-	//expect 6, 6, 0
+	//2 expect 6, 6, 0
     
     for(auto it = rb.begin(); it != rb.end(); ++it)
     {
@@ -50,7 +50,7 @@ int main()
     rb.clear();
     
     cout << rb.capacity() << ", " << rb.size() << ", " << rb.empty() << endl;
-	//expect 6, 0, 1
+	//9 expect 6, 0, 1
     
     rb.push_back(1);
     rb.push_back(2);
@@ -58,24 +58,24 @@ int main()
     rb.push_back(4);
     
     cout << rb.capacity() << ", " << rb.size() << ", " << rb.empty() << endl;
-	//expect 6, 4, 0
+	//10 expect 6, 4, 0
     
     rb.pop_front();
     rb.pop_front();
     
     cout << rb.capacity() << ", " << rb.size() << ", " << rb.empty() << endl;
-	//expect 6, 2, 0
+	//11 expect 6, 2, 0
     
     RingBuffer<int> rbCopy(rb);
     
     cout << (rb == rbCopy) << endl;
-	//expect 1
+	//12 expect 1
     
     rbCopy.push_back(5);
     rbCopy.push_back(6);
     
     cout << (rb == rbCopy) << endl;
-	//expect 0
+	//13 expect 0
     
     rbCopy.clear();
     rb.clear();
@@ -89,7 +89,7 @@ int main()
     rbCopy.push_back(4);
     
     cout << (rb == rbCopy) << endl;
-	//expect 1
+	//14 expect 1
     
 /*    RingBuffer<std::string> rb2(8);
     

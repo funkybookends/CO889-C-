@@ -263,5 +263,28 @@ int main()
 		*it=4;
 
 	}
+	{
+		RingBuffer<int> rb(6);
+		rb.push_back(1);
+		rb.push_back(2);
+		rb.push_back(3);
+		rb.push_back(4);
+		rb.push_back(5);
+		rb.push_back(6);
+		rb.clear();
+		assert(rb.size()==0);
+		rb.push_back(1);
+		assert(rb.size()==1);
+		rb.push_back(2);
+		cout<<rb.size()<<endl;
+		assert(rb.size()==2);
+		rb.push_back(3);
+		assert(rb.size()==3);
+		rb.push_back(4);
+		assert(rb.size()==4);
+		rb.pop_front();
+		rb.pop_front();
+		assert(rb.size()==2);
+	}
     return 0;
 }

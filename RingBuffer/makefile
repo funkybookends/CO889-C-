@@ -16,7 +16,7 @@
 # 	| sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@; \
 # 		[ -s $@ ] || rm -f $@
 
-test : simplecheck.ok simplecheck RingBuffer.hpp mylescheck simplecheck.cpp mylescheck.ok
+test : simplecheck.ok mylescheck.ok
 ####
 #single test
 ###
@@ -29,19 +29,19 @@ test : simplecheck.ok simplecheck RingBuffer.hpp mylescheck simplecheck.cpp myle
 # 	@touch escapechars.ok
 # 	@echo "escapechars passed"
 
-simplecheck.ok : simplecheck simplecheck.cpp RingBuffer.hpp
+simplecheck.ok : simplecheck
 	@echo "testing"
-	@./simplecheck
+	./simplecheck
 	@echo "passed"
 
 #TheTest
 
 mylescheck.ok : mylescheck mylesout.txt
 	@echo "Myles Test"
-	simplecheck > out.txt
-	@diff out.txt mylesout.txt
+	./mylescheck > out.txt
+	diff mylesout.txt out.txt
 	@rm test.out
-	@touch mylescheck.out
+	@touch mylescheck.ok
 	@echo "myles test passed"
 
 #we can also define how a test should fail. see the slides
@@ -53,7 +53,7 @@ simplecheck : simplecheck.cpp RingBuffer.hpp
 # simplecheck : $(OBJECTS)
 # 	$(LINK.cpp) -o $@ $(OBJECTS)
 
-mylestest : mylescheck mylescheck.cpp mylesout.txt RingBuffer.hpp
+mylescheck : mylescheck.cpp mylesout.txt RingBuffer.hpp
 	@echo "\n\n\n\t\tBuilding Myles Version"
 	g++ -g -std=c++11 -Wall -o mylescheck mylescheck.cpp
 	@echo "\t\tBuilt"
