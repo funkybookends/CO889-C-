@@ -484,7 +484,12 @@ private:
     {
 	// *** Your code goes here (18 marks)130
 		if (steps==0){
-			return ptr;
+			if (ptr==m_limit){
+				return m_base;
+			}
+			else {
+				return ptr;
+			}
 		}
 		if (steps > 0){
 			if (ptr==m_limit){

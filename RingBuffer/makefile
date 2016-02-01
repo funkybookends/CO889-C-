@@ -40,7 +40,6 @@ mylescheck.ok : mylescheck mylesout.txt
 	@echo "Myles Test"
 	./mylescheck > out.txt
 	diff mylesout.txt out.txt
-	@rm test.out
 	@touch mylescheck.ok
 	@echo "myles test passed"
 

@@ -276,7 +276,7 @@ int main()
 		rb.push_back(1);
 		assert(rb.size()==1);
 		rb.push_back(2);
-		cout<<rb.size()<<endl;
+		cout<<"expecting 2: " << rb.size()<<endl;
 		assert(rb.size()==2);
 		rb.push_back(3);
 		assert(rb.size()==3);
