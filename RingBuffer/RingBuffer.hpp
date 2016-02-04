@@ -15,6 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, a copy is available at
  *  http://www.r-project.org/Licenses/
+ *
+ *
+ *  Modified by Caspar Nonclercq cn249@kent.ac.uk
  */
 
 /** @file RingBuffer.hpp
@@ -118,11 +121,7 @@ public:
     _RBIterator& operator=(const _RBIterator<T, P, R>& pattern)
     {
 	// *** Your code goes here (6 marks)6
-        // this function makes this iterator a copy of pattern
-        //it copies the pointer to the pattern
-        // and to the current pointer
-        //that doesn't seem enough for 6 marks though.
-
+        // copies the iterator pattern's data members over.
         m_rb = pattern.m_rb;
         m_ptr = pattern.m_ptr;
 
@@ -300,9 +299,6 @@ public:
     {
 	// *** Your code goes here (2 marks)64
         m_buffer = nullptr;
-        //do I need to delete the other things as well? they're not on the 
-        //free store
-
     }
 
     // The following declaration prevents the compiler from generating
@@ -319,13 +315,13 @@ public:
     const_iterator begin() const
     {
 	// *** Your code goes here (2 marks)68
-        return iterator(this,m_begin);
+        return const_iterator(this,m_begin);
     }
 
     const_iterator cbegin() const
     {
 	// *** Your code goes here (2 marks)70
-        return iterator(this,m_begin);
+        return const_iterator(this,m_begin);
     }
 
     /** @brief Capacity of the RingBuffer.
@@ -349,6 +345,8 @@ public:
         while (!empty()) {
             pop_front();
         }
+		if (m_begin != m_end) {exit(1);}
+		if (size()!=0){exit(2);}
     }
 
     /** @brief Test whether RingBuffer is empty.
@@ -421,13 +419,14 @@ public:
     void push_back(const T& elem)
     {
 	// *** Your code goes here (12 marks)110
-        //puts the elemet at the end if there is space
+        //puts the element at the end if there is space
         //and then steps m_end forward
         if (size()<capacity()){
             *m_end = elem;
             m_end = stepForward(m_end, 1);
         }
 		else {
+			//throws an exception, since full
 			throw std::length_error("RingBuffer is full. Cannot push_back another value.");
 		}
     }
@@ -439,7 +438,7 @@ public:
             return m_end - m_begin;
         }
         else {
-            return m_end-m_base+m_limit-m_begin;
+            return m_end - m_base + m_limit - m_begin;
         }
     }
 private:
@@ -488,16 +487,21 @@ private:
     {
 	// *** Your code goes here (18 marks)130
 		if (steps==0){
-			return ptr;
+			if (ptr==m_limit){
+				return m_base;
+			}
+			else {
+				return ptr;
+			}
 		}
 		if (steps > 0){
-			if (ptr==m_limit){
+			if (ptr>=m_limit){
 				return stepForward(m_base, steps-1);
 			}
 			return stepForward(ptr+1, steps-1);
 		}
 		else {
-			if (ptr==m_base-1) {
+			if (ptr<=m_base-1) {
 				return stepForward(m_limit-1, steps+1);
 			}
 			return stepForward(ptr-1, steps+1);
@@ -522,12 +526,11 @@ bool operator==(const RingBuffer<T>& l,
 		const RingBuffer<T>& r)
 {
     //return false;  // *** Replace this with your code (22 marks)152
-    //gets two const iterators and iterates through them checking that
-    // all the elements are the same
+    // first check that the size is the same
     if (l.size() != r.size()){
         return false;
     }
-    auto L = l.cbegin();
+    auto L = l.cbegin(); //get two const iterators so we can compare elements
     auto R = r.cbegin();
 
     while (L!=l.cend() && R!=r.cend()){
@@ -539,10 +542,11 @@ bool operator==(const RingBuffer<T>& l,
         ++R;
         //see if only one is at the end.
         if ((L==l.cend()) ^ (R==r.cend())){ //exclusive or
+			//if either has more contents they they are not equivalent
             return false;
         }
     }
-    //must be the same
+    //must be the same since they both ended at the same time, and have the same contents.
     return true;
 }
 

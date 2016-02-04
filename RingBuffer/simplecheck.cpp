@@ -269,19 +269,31 @@ int main()
 		++itc;
 		assert (itc[1]==2);
 		assert(itc[2]==3);
+		*it=4;
 
 	}
 	{
-		RingBuffer<int> rb(5);
-		for (int i = 0; i< 5; i++){
-			rb.push_back(i);
-			assert(rb.front() == 0);
-		}
-		for (int i =0; i<5; i++){
-			assert(rb.front() == i);
-			rb.pop_front();
-		}
-
+		RingBuffer<int> rb(6);
+		rb.push_back(1);
+		rb.push_back(2);
+		rb.push_back(3);
+		rb.push_back(4);
+		rb.push_back(5);
+		rb.push_back(6);
+		rb.clear();
+		assert(rb.size()==0);
+		rb.push_back(1);
+		assert(rb.size()==1);
+		rb.push_back(2);
+		cout<<"expecting 2: " << rb.size()<<endl;
+		assert(rb.size()==2);
+		rb.push_back(3);
+		assert(rb.size()==3);
+		rb.push_back(4);
+		assert(rb.size()==4);
+		rb.pop_front();
+		rb.pop_front();
+		assert(rb.size()==2);
 	}
     return 0;
 }
