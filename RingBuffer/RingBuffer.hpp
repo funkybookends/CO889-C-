@@ -487,15 +487,10 @@ private:
     {
 	// *** Your code goes here (18 marks)130
 		if (steps==0){
-			if (ptr==m_limit){
-				return m_base;
-			}
-			else {
-				return ptr;
-			}
+			return ptr;
 		}
 		if (steps > 0){
-			if (ptr>=m_limit){
+			if (ptr>=(m_limit-1)){
 				return stepForward(m_base, steps-1);
 			}
 			return stepForward(ptr+1, steps-1);
